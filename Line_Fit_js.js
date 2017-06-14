@@ -8,11 +8,11 @@ var A, y
 var cParam = [0, 0]
 
 function setup() {
-	createCanvas(800, 800)
+	createCanvas(window.innerWidth, window.innerHeight)
 	// frameRate(30)
 	createButtons()
 
-	// console.log(mouseX, mouseY)
+	// console.log(mouseX,, mouseY)
 	background(0)
 	drawCartesian()
 	drawPoints()
@@ -49,43 +49,6 @@ function increaseOrder(){
 	order++
 }
 
-function decreaseOrder(){
-	if(order > 1){
-		order--
-	}
-}
-
-function drawCartesian() {
-	// Create the Border
-	stroke(255)
-	line(0, yt(50), width, yt(50))
-	line(50, yt(0), 50, yt(height))
-	
-	// Create Grid
-	stroke(190,190,190,100)
-	textAlign(RIGHT)
-	for(var i = 50; i < (width - 50); i+=50){
-		line(gc(i), yt(gc(0)), gc(i), yt(gc(height - 50)))
-		line(gc(0), yt(gc(i)), gc((width - 50)), yt(gc(i)))
-	
-		// Create Numbers
-		fill(0,190, 0)
-		text(i, gc(i), yt(gc(0 - 15))) // Horiz
- 		text(i, gc(-5), yt(gc(i))) // Vert
-
-	}	
-	fill(255,0,0)
-	text('Order: ' + order.toString() ,width - 10, yt(10))
-}
-
-function drawPoints(){
-	noStroke()
-	fill(255, 0, 0)
-	for(var i = 0; i < pointList.length; i++){
-		ellipse(pointList[i][0], pointList[i][1], 5, 5)
-	}
-}
-
 function mousePressed(){
 	if(mouseX - 50 >= 0 && yt(mouseY) - 50 >= 0 && mouseY > 0){		
 		pointList.push([mouseX, mouseY])
@@ -99,6 +62,54 @@ function mousePressed(){
 	drawPoints()
 	graph(true)
 }
+function decreaseOrder(){
+	if(order > 1){
+		order--
+	}
+}
+
+function drawPoints(){
+	noStroke()
+	fill(255, 0, 0)
+	for(var i = 0; i < pointList.length; i++){
+		ellipse(pointList[i][0], pointList[i][1], 5, 5)
+	}
+}
+
+function drawCartesian() {
+	// Create the Border
+	stroke(255)
+	line(0, yt(50), width, yt(50))
+	line(50, yt(0), 50, yt(height))
+	
+	// Create Grid
+	stroke(190,190,190,100)
+	textAlign(RIGHT)
+
+	// Horiz
+	for(var i = 50; i < (height - 50); i+=50){
+		line(gc(0), yt(gc(i)), gc((width - 50)), yt(gc(i))) //  Horiz
+	
+		// Create Numbers
+		fill(0,190, 0)
+ 		text(i, gc(-5), yt(gc(i))) // Horiz
+		console.log(i)
+	}
+
+	// Vert
+	for(var i = 50; i < (width - 50); i+=50){
+		line(gc(i), yt(gc(0)), gc(i), yt(gc(height - 50))) // Vert
+	
+		// Create Numbers
+		fill(0,190, 0)
+		text(i, gc(i), yt(gc(0 - 15))) // Vert
+	}
+
+
+	
+	fill(255,0,0)
+	text('Order: ' + order.toString() ,width - 10, yt(10))
+}
 
 function graph(g){
 
@@ -107,7 +118,7 @@ function graph(g){
 	yy = []
 
 	try{
-
+		//Create A and y
 		for(var i = 0; i < pointList.length; i++){
 			yy.push([((width - 50) - pointList[i][1]) + 50])
 
@@ -140,13 +151,13 @@ function graph(g){
 					yNext += cParam[ord][0]*((x+1)**ord)
 				}
 					
-
+				// Draw the graphed line
 				if(true){
 					fill(0,0,255)
-					ellipse(gc(x), (height - 50) - y + 50, 2,2)
+					ellipse(gc(x), (height - 50) - y + 50 + (width - height), 2,2)
 					console.log(x, y)
 					stroke(0,0,255)
-					line(x + 50 , (height - 50) - y + 50, x + 50 + 1, (height - 50) - yNext + 50)
+					line(x + 50 , (height - 50) - y + 50+ (width - height), x + 50 + 1, (height - 50) - yNext + 50+ (width - height))
 				}
 			}
 		}
