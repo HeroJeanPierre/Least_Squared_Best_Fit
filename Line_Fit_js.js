@@ -32,6 +32,10 @@ function createButtons(){
 }
 function clearPoints(){
 	pointList = []
+	for(var i = 0; i <= order; i++){
+		cParam[0][0] = 0
+		cParam[1][0] = 0
+	}
 }
 function increaseOrder(){
 	order++
@@ -99,8 +103,8 @@ function graph(g){
 	yy = []
 
 	for(var i = 0; i < pointList.length; i++){
-		yy.push([yt(pointList[i][1])])
-		A.push([1, pointList[i][0]])
+		yy.push([(500 - pointList[i][1]) + 50])
+		A.push([1, (pointList[i][0]) - 50])
 	}
 
 	// (A^T)(A)c = A^T
@@ -123,7 +127,7 @@ function graph(g){
 			//y = 2*x
 
 			if(y > 0){
-				ellipse(gc(x), yt(gc(y)), 2,2)
+				ellipse(gc(x), 500 - y + 50, 2,2)
 			}
 		}
 	}
