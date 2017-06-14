@@ -12,6 +12,11 @@ function setup() {
 	frameRate(30)
 	createButtons()
 
+	// console.log(mouseX, mouseY)
+	background(0)
+	drawCartesian()
+	drawPoints()
+	graph(true)
 }
 
 function createButtons(){
@@ -50,14 +55,6 @@ function decreaseOrder(){
 	}
 }
 
-function draw() {
-	// console.log(mouseX, mouseY)
-	background(0)
-	drawCartesian()
-	drawPoints()
-	graph(true)
-}
-
 function drawCartesian() {
 	// Create the Border
 	stroke(255)
@@ -90,12 +87,18 @@ function drawPoints(){
 }
 
 function mousePressed(){
+
 	if(mouseX - 50 >= 0 && yt(mouseY) - 50 >= 0 && mouseX < width && mouseY > 0){		
 		pointList.push([mouseX, mouseY])
 		// console.log('Added: ' + mouseX + ' : ', mouseY)
 		click.play()
 		// console.log('A:', A)
 	}
+
+	background(0)
+	drawCartesian()
+	drawPoints()
+	graph(true)
 }
 
 function graph(g){
