@@ -138,7 +138,9 @@ function graph(g){
 					yNext += cParam[ord][0]*((x+1)**ord)
 				}
 					
-				if(y > 0){
+
+				if(true){
+					fill(0,0,255)
 					ellipse(gc(x), 500 - y + 50, 2,2)
 					console.log(x, y)
 					stroke(0,0,255)
