@@ -67,6 +67,9 @@ function mousePressed(){
 	drawCartesian()
 	drawPoints()
 	graph(true)
+	if(pointList.length > 0){
+		displayFunction()
+	}
 }
 
 function drawCartesian() {
@@ -114,7 +117,27 @@ function drawPoints(){
 		ellipse(pointList[i][0], pointList[i][1], 5, 5)
 	}
 }
+function displayFunction(){
+	{ //Print the equaton
+		equ = 'Y = '
+		for(var ord = 1; ord <= order; ord++){
+				if(ord == 1){
+					equ += '(' + cParam[ord][0].toExponential(3).toString() + ')X +'
+				}else{
+					equ += '(' + cParam[ord][0].toExponential(3).toString() + ')X^' + ord.toString() + '+'
+				}
+			}
 
+			equ += '(' + (cParam[0][0] - (width - height) - 50).toExponential(3).toString() + ')'
+
+			textAlign(LEFT)
+			textSize(25)
+			fill(255)
+			text(equ, 60, 50)
+
+			console.log(equ)
+		}
+}
 function graph(g){
 
 	// Set up variables
@@ -140,29 +163,6 @@ function graph(g){
 			right = numeric.dot(numeric.transpose(A), yy)
 			//console.log(left, '  :  ', right)
 			cParam = numeric.dot(numeric.inv(left), right)
-		}
-
-
-		equ = 'Y = '
-
-		
-		{ //Print the equaton
-		for(var ord = 1; ord <= order; ord++){
-				if(ord == 1){
-					equ += '(' + cParam[ord][0].toExponential(3).toString() + ')X +'
-				}else{
-					equ += '(' + cParam[ord][0].toExponential(3).toString() + ')X^' + ord.toString() + '+'
-				}
-			}
-
-			equ += '(' + (cParam[0][0] - (width - height) - 50).toExponential(3).toString() + ')'
-
-			textAlign(LEFT)
-			textSize(25)
-			fill(255)
-			text(equ, 60, 50)
-
-			console.log(equ)
 		}
 
 		for(var x = 0; x < (width - 50); x++){
