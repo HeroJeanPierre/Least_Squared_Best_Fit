@@ -55,7 +55,7 @@ function decreaseOrder(){
 	}
 }
 
-function mouseReleased(){
+function mouseClicked(){
 	if(mouseX - 50 >= 0 && yt(mouseY) - 50 >= 0 && mouseY > 0){		
 		pointList.push([mouseX, mouseY])
 		// console.log('Added: ' + mouseX + ' : ', mouseY)
