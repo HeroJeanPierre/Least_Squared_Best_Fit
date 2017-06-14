@@ -99,7 +99,7 @@ function graph(g){
 	yy = []
 
 	for(var i = 0; i < pointList.length; i++){
-		yy.push([yt(gc(pointList[i][1]))])
+		yy.push([yt(pointList[i][1])])
 		A.push([1, pointList[i][0]])
 	}
 
