@@ -9,7 +9,7 @@ var cParam = [0, 0]
 
 function setup() {
 	createCanvas(550, 550)
-	frameRate(30)
+	// frameRate(30)
 	createButtons()
 
 	// console.log(mouseX, mouseY)
@@ -87,7 +87,6 @@ function drawPoints(){
 }
 
 function mousePressed(){
-
 	if(mouseX - 50 >= 0 && yt(mouseY) - 50 >= 0 && mouseX < width && mouseY > 0){		
 		pointList.push([mouseX, mouseY])
 		// console.log('Added: ' + mouseX + ' : ', mouseY)
