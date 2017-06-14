@@ -8,7 +8,7 @@ var A, y
 var cParam = [0, 0]
 
 function setup() {
-	createCanvas(550, 550)
+	createCanvas(800, 800)
 	// frameRate(30)
 	createButtons()
 
@@ -58,15 +58,15 @@ function decreaseOrder(){
 function drawCartesian() {
 	// Create the Border
 	stroke(255)
-	line(0, yt(50), 550, yt(50))
-	line(50, yt(0), 50, yt(550))
+	line(0, yt(50), width, yt(50))
+	line(50, yt(0), 50, yt(height))
 	
 	// Create Grid
 	stroke(190,190,190,100)
 	textAlign(RIGHT)
-	for(var i = 50; i < 500; i+=50){
-		line(gc(i), yt(gc(0)), gc(i), yt(gc(500)))
-		line(gc(0), yt(gc(i)), gc(500), yt(gc(i)))
+	for(var i = 50; i < (width - 50); i+=50){
+		line(gc(i), yt(gc(0)), gc(i), yt(gc(height - 50)))
+		line(gc(0), yt(gc(i)), gc((width - 50)), yt(gc(i)))
 	
 		// Create Numbers
 		fill(0,190, 0)
@@ -87,7 +87,7 @@ function drawPoints(){
 }
 
 function mousePressed(){
-	if(mouseX - 50 >= 0 && yt(mouseY) - 50 >= 0 && mouseX < width && mouseY > 0){		
+	if(mouseX - 50 >= 0 && yt(mouseY) - 50 >= 0 && mouseY > 0){		
 		pointList.push([mouseX, mouseY])
 		// console.log('Added: ' + mouseX + ' : ', mouseY)
 		click.play()
@@ -109,7 +109,7 @@ function graph(g){
 	try{
 
 		for(var i = 0; i < pointList.length; i++){
-			yy.push([(500 - pointList[i][1]) + 50])
+			yy.push([((width - 50) - pointList[i][1]) + 50])
 
 			var temp = []
 			for(var ord = 0; ord <= order; ord++){
@@ -128,7 +128,7 @@ function graph(g){
 		}
 
 		if(g){
-			for(var x = 0; x < 500; x++){
+			for(var x = 0; x < (width - 50); x++){
 				fill(0,0,255)
 
 				
@@ -143,10 +143,10 @@ function graph(g){
 
 				if(true){
 					fill(0,0,255)
-					ellipse(gc(x), 500 - y + 50, 2,2)
+					ellipse(gc(x), (height - 50) - y + 50, 2,2)
 					console.log(x, y)
 					stroke(0,0,255)
-					line(x + 50 , 500 - y + 50, x + 50 + 1, 500 - yNext + 50)
+					line(x + 50 , (height - 50) - y + 50, x + 50 + 1, (height - 50) - yNext + 50)
 				}
 			}
 		}
