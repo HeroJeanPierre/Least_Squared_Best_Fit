@@ -4,12 +4,12 @@ var order = 1
 var button
 var xBord = 50
 var yBord = 500
-var A, y
+var A, y // linear 
 var cParam = [0, 0]
 
 function setup() {
 	createCanvas(window.innerWidth, window.innerHeight)
-	// frameRate(30)
+	frameRate(30)
 	createButtons()
 
 	// console.log(mouseX,, mouseY)
@@ -49,6 +49,12 @@ function increaseOrder(){
 	order++
 }
 
+function decreaseOrder(){
+	if(order > 1){
+		order--
+	}
+}
+
 function mousePressed(){
 	if(mouseX - 50 >= 0 && yt(mouseY) - 50 >= 0 && mouseY > 0){		
 		pointList.push([mouseX, mouseY])
@@ -62,21 +68,11 @@ function mousePressed(){
 	drawPoints()
 	graph(true)
 }
-function decreaseOrder(){
-	if(order > 1){
-		order--
-	}
-}
-
-function drawPoints(){
-	noStroke()
-	fill(255, 0, 0)
-	for(var i = 0; i < pointList.length; i++){
-		ellipse(pointList[i][0], pointList[i][1], 5, 5)
-	}
-}
 
 function drawCartesian() {
+
+	textSize(12)
+
 	// Create the Border
 	stroke(255)
 	line(0, yt(50), width, yt(50))
@@ -93,7 +89,7 @@ function drawCartesian() {
 		// Create Numbers
 		fill(0,190, 0)
  		text(i, gc(-5), yt(gc(i))) // Horiz
-		console.log(i)
+		// console.log(i)
 	}
 
 	// Vert
@@ -109,6 +105,14 @@ function drawCartesian() {
 	
 	fill(255,0,0)
 	text('Order: ' + order.toString() ,width - 10, yt(10))
+}
+
+function drawPoints(){
+	noStroke()
+	fill(255, 0, 0)
+	for(var i = 0; i < pointList.length; i++){
+		ellipse(pointList[i][0], pointList[i][1], 5, 5)
+	}
 }
 
 function graph(g){
@@ -138,32 +142,55 @@ function graph(g){
 			cParam = numeric.dot(numeric.inv(left), right)
 		}
 
-		if(g){
-			for(var x = 0; x < (width - 50); x++){
-				fill(0,0,255)
 
+		equ = 'Y = '
+
+		
+		{ //Print the equaton
+		for(var ord = 1; ord <= order; ord++){
+				if(ord == 1){
+					equ += '(' + cParam[ord][0].toExponential(3).toString() + ')X +'
+				}else{
+					equ += '(' + cParam[ord][0].toExponential(3).toString() + ')X^' + ord.toString() + '+'
+				}
+			}
+
+			equ += '(' + (cParam[0][0] - (width - height) - 50).toExponential(3).toString() + ')'
+
+			textAlign(LEFT)
+			textSize(25)
+			fill(255)
+			text(equ, 60, 50)
+
+			console.log(equ)
+		}
+
+		for(var x = 0; x < (width - 50); x++){
+			fill(0,0,255)
+
+			
+			y = cParam[0][0]
+			yNext = cParam[0][0]
+
+			for(var ord = 1; ord <= order; ord++){
+				y     += cParam[ord][0]*(x**ord)
+				yNext += cParam[ord][0]*((x+1)**ord)
+			}
 				
-				y = cParam[0][0]
-				yNext = cParam[0][0]
-
-				for(var ord = 1; ord <= order; ord++){
-					y     += cParam[ord][0]*(x**ord)
-					yNext += cParam[ord][0]*((x+1)**ord)
-				}
-					
-				// Draw the graphed line
-				if(true){
-					fill(0,0,255)
-					ellipse(gc(x), (height - 50) - y + 50 + (width - height), 2,2)
-					console.log(x, y)
-					stroke(0,0,255)
-					line(x + 50 , (height - 50) - y + 50+ (width - height), x + 50 + 1, (height - 50) - yNext + 50+ (width - height))
-				}
+			// Draw the graphed line
+			if(true){
+				fill(0,0,255)
+				ellipse(gc(x), (height - 50) - y + 50 + (width - height), 2,2)
+				//console.log(x, y)
+				stroke(0,0,255)
+				line(x + 50 , (height - 50) - y + 50+ (width - height), x + 50 + 1, (height - 50) - yNext + 50+ (width - height))
 			}
 		}
 	}catch(err){
 	}
 }
+
+//HELP FUNCTIONS//
 
 // Set lower right to y = 0
 function yt(y){
