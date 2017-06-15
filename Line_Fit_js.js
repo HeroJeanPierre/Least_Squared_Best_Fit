@@ -24,17 +24,17 @@ function createButtons(){
 	// Clear button
 	button1 = createButton('Clear')
 	button1.position(55, yt(25))
-	button1.mousePressed(clearPoints)
+	button1.mouseClicked(clearPoints)
 
 	//Increase Order
 	button2 = createButton('+ Order')
 	button2.position(111, yt(25))
-	button2.mousePressed(increaseOrder)
+	button2.mouseClicked(increaseOrder)
 
 	//Decrease Order
 	button2 = createButton('- Order')
 	button2.position(185, yt(25))
-	button2.mousePressed(decreaseOrder)
+	button2.mouseClicked(decreaseOrder)
 }
 
 function clearPoints(){
