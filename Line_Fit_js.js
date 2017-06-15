@@ -21,20 +21,21 @@ function setup() {
 
 function createButtons(){
 	space = 90
+
 	// Clear button
 	button1 = createButton('Clear')
 	button1.position(55, yt(25))
 	button1.mouseClicked(clearPoints)
 
 	//Increase Order
-	button2 = createButton('+ Order')
+	button2 = createButton('- Order')
 	button2.position(111, yt(25))
-	button2.mouseClicked(increaseOrder)
+	button2.mouseClicked(decreaseOrder)
 
 	//Decrease Order
-	button2 = createButton('- Order')
+	button2 = createButton('+ Order')
 	button2.position(185, yt(25))
-	button2.mouseClicked(decreaseOrder)
+	button2.mouseClicked(increaseOrder)
 }
 
 function clearPoints(){
