@@ -1,3 +1,5 @@
+// Author Julien Jean-Pierre
+
 var pointList = []
 var click = new buzz.sound('click.wav')
 var order = 1
@@ -27,16 +29,17 @@ function createButtons(){
 	button1.position(55, yt(25))
 	button1.mouseClicked(clearPoints)
 
-	//Increase Order
-	button2 = createButton('- Order')
-	button2.position(111, yt(25))
-	button2.mouseClicked(decreaseOrder)
-
 	//Decrease Order
 	button2 = createButton('+ Order')
 	button2.position(185, yt(25))
 	button2.mouseClicked(increaseOrder)
+
+	//Increase Order
+	button3 = createButton('- Order')
+	button3.position(111, yt(25))
+	button3.mouseClicked(decreaseOrder)
 }
+
 
 function clearPoints(){
 	pointList = []
@@ -113,6 +116,7 @@ function drawCartesian() {
 
 function drawPoints(){
 	noStroke()
+
 	fill(255, 0, 0)
 	for(var i = 0; i < pointList.length; i++){
 		ellipse(pointList[i][0], pointList[i][1], 5, 5)
