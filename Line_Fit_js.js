@@ -40,7 +40,6 @@ function createButtons(){
 	button3.mouseClicked(decreaseOrder)
 }
 
-
 function clearPoints(){
 	pointList = []
 	for(var i = 0; i <= order; i++){
@@ -122,6 +121,7 @@ function drawPoints(){
 		ellipse(pointList[i][0], pointList[i][1], 5, 5)
 	}
 }
+
 function displayFunction(){
 	{ //Print the equaton
 		equ = 'Y = '
@@ -143,6 +143,7 @@ function displayFunction(){
 			console.log(equ)
 		}
 }
+
 function graph(g){
 
 	// Set up variables
@@ -196,7 +197,6 @@ function graph(g){
 }
 
 //HELP FUNCTIONS//
-
 // Set lower right to y = 0
 function yt(y){
 	return height - y
