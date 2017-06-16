@@ -206,3 +206,7 @@ function yt(y){
 function gc(n){
 	return n + 50
 }
+
+
+function new(a, b, c):
+	pass
