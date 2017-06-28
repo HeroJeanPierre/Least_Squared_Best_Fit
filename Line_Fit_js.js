@@ -31,12 +31,12 @@ function createButtons(){
 
 	//Decrease Order
 	button2 = createButton('+ Order')
-	button2.position(185, yt(25))
+	button2.position(185 + 20, yt(25))
 	button2.mouseClicked(increaseOrder)
 
 	//Increase Order
 	button3 = createButton('- Order')
-	button3.position(111, yt(25))
+	button3.position(111 + 20, yt(25))
 	button3.mouseClicked(decreaseOrder)
 }
 
@@ -137,6 +137,7 @@ function displayFunction(){
 
 			textAlign(LEFT)
 			textSize(25)
+			noStroke()
 			fill(255)
 			text(equ, 60, 50)
 
@@ -206,7 +207,3 @@ function yt(y){
 function gc(n){
 	return n + 50
 }
-
-
-function new(a, b, c):
-	pass
