@@ -29,15 +29,15 @@ function createButtons() {
 	button1.position(55, yt(25));
 	button1.mouseClicked(clearPoints);
 
-	//Decrease Order
-	button2 = createButton("+ Order");
-	button2.position(185 + 50, yt(25));
-	button2.mouseClicked(increaseOrder);
-
 	//Increase Order
 	button3 = createButton("- Order");
 	button3.position(111 + 50, yt(25));
 	button3.mouseClicked(decreaseOrder);
+
+	//Decrease Order
+	button2 = createButton("+ Order");
+	button2.position(185 + 90, yt(25));
+	button2.mouseClicked(increaseOrder);
 }
 
 function clearPoints() {
